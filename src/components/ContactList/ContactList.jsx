@@ -1,29 +1,31 @@
+import { useSelector, useDispatch } from 'react-redux';
+import { getFilteredContacts } from 'redux/selectors';
+import { deleteContact } from 'redux/operations';
 import {
   ListOfContacts,
   ListItem,
   ItemText,
   DeleteButton,
 } from './ContactList.styled';
-import { useGetContactsQuery } from 'redux/phonebookApi';
 
 export const ContactsList = () => {
-  // const dispatch = useDispatch();
-  // const contactsList = useSelector(getFilteredContacts);
-  const { data, isLoading, error } = useGetContactsQuery;
-  console.log(data);
+  const dispatch = useDispatch();
+  const contactsList = useSelector(getFilteredContacts);
 
-  // const handledDeleteContact = contactId => {
-  //   dispatch(deleteContact(contactId));
-  // };
+  const handledDeleteContact = contactId => {
+    dispatch(deleteContact(contactId));
+  };
 
   return (
     <ListOfContacts>
-      {data.map(({ id, name, phone }) => (
+      {contactsList.map(({ id, name, phone }) => (
         <ListItem key={id}>
           <ItemText>
             {name}: {phone}
           </ItemText>
-          <DeleteButton>Delete</DeleteButton>
+          <DeleteButton onClick={() => handledDeleteContact(id)}>
+            Delete
+          </DeleteButton>
         </ListItem>
       ))}
     </ListOfContacts>
