@@ -6,6 +6,9 @@ export const ContactsForm = styled.form`
 `;
 
 export const AddButton = styled.button`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-top: 15px;
   background-color: #dedede;
   color: #2c2c2c;

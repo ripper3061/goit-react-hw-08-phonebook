@@ -1,11 +1,11 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { setFilter } from '../../redux/filterSlice';
-import { getFilteredName } from 'redux/selectors';
+import { selectFilteredName } from 'redux/selectors';
 import { nanoid } from 'nanoid';
 import { Input } from './Filter.styled';
 
 export const Filter = () => {
-  const filter = useSelector(getFilteredName);
+  const filter = useSelector(selectFilteredName);
   const dispatch = useDispatch();
   const id = nanoid(10);
 

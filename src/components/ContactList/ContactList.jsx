@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { getFilteredContacts } from 'redux/selectors';
+import { selectDeleteLoading, selectFilteredContacts } from 'redux/selectors';
 import { deleteContact } from 'redux/operations';
 import {
   ListOfContacts,
@@ -7,10 +7,12 @@ import {
   ItemText,
   DeleteButton,
 } from './ContactList.styled';
+import { HendleLoader } from 'components/Loader/Loader';
 
 export const ContactsList = () => {
   const dispatch = useDispatch();
-  const contactsList = useSelector(getFilteredContacts);
+  const contactsList = useSelector(selectFilteredContacts);
+  const deleteLoading = useSelector(selectDeleteLoading);
 
   const handledDeleteContact = contactId => {
     dispatch(deleteContact(contactId));
@@ -18,6 +20,7 @@ export const ContactsList = () => {
 
   return (
     <ListOfContacts>
+      isDeleting
       {contactsList.map(({ id, name, phone }) => (
         <ListItem key={id}>
           <ItemText>
@@ -25,6 +28,7 @@ export const ContactsList = () => {
           </ItemText>
           <DeleteButton onClick={() => handledDeleteContact(id)}>
             Delete
+            {deleteLoading && <HendleLoader />}
           </DeleteButton>
         </ListItem>
       ))}

@@ -1,9 +1,10 @@
 import BarLoader from 'react-spinners/BarLoader';
+import ClipLoader from 'react-spinners/ClipLoader';
 import { useSelector } from 'react-redux';
-import { getIsLoading } from 'redux/selectors';
+import { selectIsLoading } from 'redux/selectors';
 
 export const Loader = () => {
-  const isLoading = useSelector(getIsLoading);
+  const isLoading = useSelector(selectIsLoading);
   return (
     <BarLoader
       color="#409bfc"
@@ -13,4 +14,8 @@ export const Loader = () => {
       width={300}
     />
   );
+};
+
+export const HendleLoader = () => {
+  return <ClipLoader color="#2349f2" size={10} />;
 };

@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import Notiflix from 'notiflix';
 import { useSelector, useDispatch } from 'react-redux';
-import { getContacts } from 'redux/selectors';
+import { selectAddLoading, selectContacts } from 'redux/selectors';
 import { addContact } from '../../redux/operations';
 import { ContactsForm, AddButton } from './ContactForm.styled';
+import { HendleLoader } from 'components/Loader/Loader';
 
 export default function ContactForm() {
   const [name, setName] = useState('');
@@ -13,7 +14,8 @@ export default function ContactForm() {
   const nameInputId = nanoid();
   const phoneInputId = nanoid();
 
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
+  const addLoading = useSelector(selectAddLoading);
   const dispatch = useDispatch();
 
   const handleChange = e => {
@@ -44,7 +46,6 @@ export default function ContactForm() {
 
   const checkContactsName = (contacts, newContactName) => {
     const normalizedName = newContactName.toLowerCase();
-    console.log(contacts);
     return contacts.some(({ name }) => normalizedName === name.toLowerCase());
   };
 
@@ -79,7 +80,10 @@ export default function ContactForm() {
         required
       />
 
-      <AddButton type="submit">Add contact</AddButton>
+      <AddButton type="submit">
+        Add contact
+        {addLoading && <HendleLoader />}
+      </AddButton>
     </ContactsForm>
   );
 }

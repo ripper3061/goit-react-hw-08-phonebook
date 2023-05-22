@@ -28,7 +28,10 @@ export const ItemText = styled.p`
 `;
 
 export const DeleteButton = styled.button`
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 75px;
   background-color: #dedede;
   color: #2c2c2c;
   font-weight: 500;
