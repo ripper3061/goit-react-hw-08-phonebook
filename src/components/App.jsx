@@ -4,8 +4,8 @@ import { Route, Routes } from 'react-router-dom';
 import AppBar from './AppBar/AppBar';
 import ContactsPage from '../pages/contactsPage';
 import HomePage from '../pages/homePage';
-import SignUpPage from 'pages/SignUpPage';
-import SignInPage from 'pages/SignInPage';
+import SignUpPage from 'pages/SignInPage';
+import SignInPage from 'pages/SignUpPage';
 
 // import { authOperations } from './redux/auth';
 
