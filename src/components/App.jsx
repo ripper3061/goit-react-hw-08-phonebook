@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+// import { useEffect } from 'react';
+// import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import AppBar from './AppBar/AppBar';
 import ContactsPage from '../pages/contactsPage';
@@ -10,7 +10,7 @@ import SignInPage from 'pages/SignUpPage';
 // import { authOperations } from './redux/auth';
 
 export default function App() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   // useEffect(() => {
   //   dispatch(authOperations.fetchCurrentUser());
