@@ -2,7 +2,6 @@ import axios from 'axios';
 import Notiflix from 'notiflix';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-// axios.defaults.baseURL = 'https://64648993043c103502bbfa0a.mockapi.io/';
 const errorMessage = `Sorry, something went wrong. Please reload the page!`;
 
 export const fetchContacts = createAsyncThunk(
@@ -38,7 +37,6 @@ export const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
   async (contactId, thunkAPI) => {
     try {
-      console.log(contactId);
       const response = await axios.delete(`/contacts/${contactId}`);
       Notiflix.Notify.success('Contact deleted');
       return response.data;

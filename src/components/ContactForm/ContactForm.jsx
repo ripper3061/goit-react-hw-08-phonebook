@@ -9,10 +9,10 @@ import { HendleLoader } from 'components/Loader/Loader';
 
 export default function ContactForm() {
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
 
   const nameInputId = nanoid();
-  const phoneInputId = nanoid();
+  const numberInputId = nanoid();
 
   const contacts = useSelector(selectContacts);
   const addLoading = useSelector(selectAddLoading);
@@ -25,8 +25,8 @@ export default function ContactForm() {
       case 'name':
         setName(value);
         break;
-      case 'phone':
-        setPhone(value);
+      case 'number':
+        setNumber(value);
         break;
       default:
         break;
@@ -40,7 +40,7 @@ export default function ContactForm() {
       Notiflix.Notify.warning(`${name} is already in contacts`);
       return;
     }
-    dispatch(addContact({ name, phone }));
+    dispatch(addContact({ name, number }));
     resetContactForm();
   };
 
@@ -51,7 +51,7 @@ export default function ContactForm() {
 
   const resetContactForm = () => {
     setName('');
-    setPhone('');
+    setNumber('');
   };
 
   return (
@@ -68,12 +68,12 @@ export default function ContactForm() {
         required
       />
 
-      <label htmlFor={phoneInputId}>Number</label>
+      <label htmlFor={numberInputId}>Number</label>
       <input
         type="tel"
-        name="phone"
-        value={phone}
-        id={phoneInputId}
+        name="number"
+        value={number}
+        id={numberInputId}
         onChange={handleChange}
         pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
