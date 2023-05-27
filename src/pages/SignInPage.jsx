@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { signIn } from 'redux/auth/authOperations';
-// import { authOperations } from '../redux/auth';
 
 const styles = {
   form: {
