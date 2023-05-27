@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { signUp, signIn, logOut } from '../auth/authOperations';
+import {
+  signUp,
+  signIn,
+  logOut,
+  fetchCurrentUser,
+} from '../auth/authOperations';
 
 const initialState = {
   user: { name: null, email: null },
@@ -25,6 +30,11 @@ const logOutFulfilled = (state, action) => {
   state.isLoggedIn = false;
 };
 
+const fetchCurrentUserFulfilled = (state, action) => {
+  state.user = action.payload;
+  state.isLoggedIn = true;
+};
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -32,6 +42,7 @@ const authSlice = createSlice({
     builder.addCase(signUp.fulfilled, signUpFulfilled);
     builder.addCase(signIn.fulfilled, signInFulfilled);
     builder.addCase(logOut.fulfilled, logOutFulfilled);
+    builder.addCase(fetchCurrentUser.fulfilled, fetchCurrentUserFulfilled);
   },
 });
 
