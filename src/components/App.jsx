@@ -1,39 +1,31 @@
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { selectContacts, selectIsLoading } from 'redux/selectors';
-import { fetchContacts } from 'redux/operations';
-import { Section } from './Section/Section';
-import ContactForm from './ContactForm/ContactForm';
-import { ContactsList } from './ContactList/ContactList';
-import { Filter } from './Filter/Filter';
-import { Loader } from './Loader/Loader';
-import { AppSection } from './App.styled';
+import { useDispatch } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import AppBar from './AppBar/AppBar';
+import ContactsPage from '../pages/contactsPage';
+import HomePage from '../pages/homePage';
+import SignUpPage from 'pages/SignUpPage';
+import SignInPage from 'pages/SignInPage';
+
+// import { authOperations } from './redux/auth';
 
 export default function App() {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
-  const isLoading = useSelector(selectIsLoading);
 
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(authOperations.fetchCurrentUser());
+  // }, [dispatch]);
 
   return (
-    <AppSection>
-      <Section title="Phonebook">
-        <ContactForm />
-      </Section>
+    <>
+      <AppBar />
 
-      <Section title="Contacts">
-        {contacts.length > 0 && (
-          <>
-            <Filter />
-            <ContactsList />
-          </>
-        )}
-        {!isLoading && contacts.length === 0 && <p>There is no contacts</p>}
-        <Loader />
-      </Section>
-    </AppSection>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/register" element={<SignUpPage />} />
+        <Route path="/login" element={<SignInPage />} />
+        <Route path="/contacts" element={<ContactsPage />} />
+      </Routes>
+    </>
   );
 }
