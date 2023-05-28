@@ -1,6 +1,4 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { selectDeleteLoading, selectFilteredContacts } from 'redux/selectors';
-import { deleteContact } from 'redux/operations';
 import {
   ListOfContacts,
   ListItem,
@@ -8,6 +6,11 @@ import {
   DeleteButton,
 } from './ContactList.styled';
 import { HendleLoader } from 'components/Loader/Loader';
+import {
+  selectDeleteLoading,
+  selectFilteredContacts,
+} from 'redux/contacts/selectors';
+import { deleteContact } from 'redux/contacts/operations';
 
 export const ContactsList = () => {
   const dispatch = useDispatch();

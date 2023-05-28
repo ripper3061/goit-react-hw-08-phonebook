@@ -1,7 +1,7 @@
 import BarLoader from 'react-spinners/BarLoader';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { useSelector } from 'react-redux';
-import { selectIsLoading } from 'redux/selectors';
+import { selectIsLoading } from 'redux/contacts/selectors';
 
 export const Loader = () => {
   const isLoading = useSelector(selectIsLoading);

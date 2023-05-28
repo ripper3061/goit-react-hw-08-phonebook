@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import Notiflix from 'notiflix';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectAddLoading, selectContacts } from 'redux/selectors';
-import { addContact } from '../../redux/operations';
+
 import { ContactsForm, AddButton } from './ContactForm.styled';
 import { HendleLoader } from 'components/Loader/Loader';
+import { selectAddLoading, selectContacts } from 'redux/contacts/selectors';
+import { addContact } from 'redux/contacts/operations';
 
 export default function ContactForm() {
   const [name, setName] = useState('');
