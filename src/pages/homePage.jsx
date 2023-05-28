@@ -2,14 +2,14 @@ import React from 'react';
 
 const styles = {
   container: {
-    minHeight: 'calc(100vh - 50px)',
+    minHeight: 400,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   },
   title: {
     fontWeight: 500,
-    fontSize: 48,
+    fontSize: 24,
     textAlign: 'center',
   },
 };

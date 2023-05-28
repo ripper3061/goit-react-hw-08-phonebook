@@ -10,6 +10,7 @@ const initialState = {
   user: { name: null, email: null },
   token: null,
   isLoggedIn: false,
+  isFetchingCurrentUser: false,
 };
 
 const signUpFulfilled = (state, action) => {
@@ -30,9 +31,18 @@ const logOutFulfilled = (state, action) => {
   state.isLoggedIn = false;
 };
 
+const fetchCurrentUserPending = (state, action) => {
+  state.isFetchingCurrentUser = true;
+};
+
 const fetchCurrentUserFulfilled = (state, action) => {
   state.user = action.payload;
   state.isLoggedIn = true;
+  state.isFetchingCurrentUser = false;
+};
+
+const fetchCurrentUserRejected = (state, action) => {
+  state.isFetchingCurrentUser = false;
 };
 
 const authSlice = createSlice({
@@ -42,7 +52,9 @@ const authSlice = createSlice({
     builder.addCase(signUp.fulfilled, signUpFulfilled);
     builder.addCase(signIn.fulfilled, signInFulfilled);
     builder.addCase(logOut.fulfilled, logOutFulfilled);
+    builder.addCase(fetchCurrentUser.pending, fetchCurrentUserPending);
     builder.addCase(fetchCurrentUser.fulfilled, fetchCurrentUserFulfilled);
+    builder.addCase(fetchCurrentUser.rejected, fetchCurrentUserRejected);
   },
 });
 

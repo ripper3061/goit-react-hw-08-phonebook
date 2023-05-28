@@ -13,7 +13,7 @@ const styles = {
   },
 };
 
-export default function SignInPage() {
+export default function SignUpPage() {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');

@@ -17,14 +17,15 @@ const styles = {
 export default function AuthNav() {
   return (
     <div>
+      <NavLink to="/login" style={styles.link} activestyle={styles.activeLink}>
+        Log In
+      </NavLink>
+
       <NavLink
         to="/register"
         style={styles.link}
         activestyle={styles.activeLink}
       >
-        Sign In
-      </NavLink>
-      <NavLink to="/login" style={styles.link} activestyle={styles.activeLink}>
         Sign Up
       </NavLink>
     </div>
