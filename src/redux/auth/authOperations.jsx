@@ -12,34 +12,43 @@ const token = {
   },
 };
 
-export const signUp = createAsyncThunk('auth/signup', async formData => {
-  try {
-    const { data } = await axios.post('/users/signup', formData);
-    token.set(data.token);
-    return data;
-  } catch (error) {
-    // TODO: Добавить обработку ошибки error.message
+export const signUp = createAsyncThunk(
+  'auth/signup',
+  async (formData, thunkAPI) => {
+    try {
+      const { data } = await axios.post('/users/signup', formData);
+      token.set(data.token);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
-});
+);
 
-export const signIn = createAsyncThunk('auth/signin', async formData => {
-  try {
-    const { data } = await axios.post('/users/login', formData);
-    token.set(data.token);
-    return data;
-  } catch (error) {
-    // TODO: Добавить обработку ошибки error.message
+export const signIn = createAsyncThunk(
+  'auth/signin',
+  async (formData, thunkAPI) => {
+    try {
+      const { data } = await axios.post('/users/login', formData);
+      token.set(data.token);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
-});
+);
 
-export const logOut = createAsyncThunk('auth/logout', async token => {
-  try {
-    await axios.post('/users/logout', token);
-    token.unset();
-  } catch (error) {
-    // TODO: Добавить обработку ошибки error.message
+export const logOut = createAsyncThunk(
+  'auth/logout',
+  async (token, thunkAPI) => {
+    try {
+      await axios.post('/users/logout', token);
+      token.unset();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
-});
+);
 
 export const fetchCurrentUser = createAsyncThunk(
   'auth/refresh',
@@ -48,7 +57,7 @@ export const fetchCurrentUser = createAsyncThunk(
     const persistedToken = state.auth.token;
 
     if (persistedToken === null) {
-      return thunkAPI.rejectWithValue();
+      return thunkAPI.rejectWithValue('Unable to fetch user');
     }
 
     token.set(persistedToken);
@@ -57,7 +66,7 @@ export const fetchCurrentUser = createAsyncThunk(
       const { data } = await axios.get('/users/current');
       return data;
     } catch (error) {
-      // TODO: Добавить обработку ошибки error.message
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
