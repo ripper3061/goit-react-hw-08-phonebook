@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import AppBar from './AppBar/AppBar';
 import ContactsPage from '../pages/contactsPage';
 import HomePage from '../pages/homePage';
@@ -52,7 +52,7 @@ export default function App() {
               <PrivateRoute component={<ContactsPage />} redirectTo="/login" />
             }
           />
-          <Route path="*" element={<HomePage />} />
+          <Route path="*" element={<Navigate to="/" replace={true} />} />
         </Routes>
       </AppSection>
     )
