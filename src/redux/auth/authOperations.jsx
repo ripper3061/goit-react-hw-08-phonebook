@@ -38,17 +38,14 @@ export const signIn = createAsyncThunk(
   }
 );
 
-export const logOut = createAsyncThunk(
-  'auth/logout',
-  async (token, thunkAPI) => {
-    try {
-      await axios.post('/users/logout', token);
-      token.unset();
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
+export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+  try {
+    await axios.post('/users/logout');
+    token.unset();
+  } catch (error) {
+    return thunkAPI.rejectWithValue();
   }
-);
+});
 
 export const fetchCurrentUser = createAsyncThunk(
   'auth/refresh',
