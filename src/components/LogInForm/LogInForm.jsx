@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { signIn } from 'redux/auth/authOperations';
+import { useDispatch, useSelector } from 'react-redux';
+import { logIn } from 'redux/auth/authOperations';
 import { Button, Form, Label } from './LogInForm.styled';
+import { selectUserEmail } from 'redux/auth/authSelectors';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector(selectUserEmail);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -21,7 +23,10 @@ export const LoginForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(signIn({ email, password }));
+    dispatch(logIn({ email, password }));
+
+    if (!isLoggedIn) return;
+
     setEmail('');
     setPassword('');
   };

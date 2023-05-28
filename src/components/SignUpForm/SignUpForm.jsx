@@ -2,11 +2,13 @@ import { Button } from 'components/LogInForm/LogInForm.styled';
 import { Label } from 'components/LogInForm/LogInForm.styled';
 import { Form } from 'components/LogInForm/LogInForm.styled';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { signUp } from 'redux/auth/authOperations';
+import { selectUserEmail } from 'redux/auth/authSelectors';
 
 export const SignUpForm = () => {
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector(selectUserEmail);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -27,6 +29,9 @@ export const SignUpForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(signUp({ name, email, password }));
+
+    if (!isLoggedIn) return;
+
     setName('');
     setEmail('');
     setPassword('');

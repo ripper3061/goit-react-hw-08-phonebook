@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
   signUp,
-  signIn,
   logOut,
   fetchCurrentUser,
+  logIn,
 } from '../auth/authOperations';
 
 const initialState = {
@@ -50,7 +50,7 @@ const authSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder.addCase(signUp.fulfilled, signUpFulfilled);
-    builder.addCase(signIn.fulfilled, signInFulfilled);
+    builder.addCase(logIn.fulfilled, signInFulfilled);
     builder.addCase(logOut.fulfilled, logOutFulfilled);
     builder.addCase(fetchCurrentUser.pending, fetchCurrentUserPending);
     builder.addCase(fetchCurrentUser.fulfilled, fetchCurrentUserFulfilled);
