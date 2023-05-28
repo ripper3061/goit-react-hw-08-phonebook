@@ -5,9 +5,9 @@ import {
   ItemText,
   DeleteButton,
 } from './ContactList.styled';
-import { HendleLoader } from 'components/Loader/Loader';
+// import { HendleLoader } from 'components/Loader/Loader';
 import {
-  selectDeleteLoading,
+  // selectDeleteLoading,
   selectFilteredContacts,
 } from 'redux/contacts/selectors';
 import { deleteContact } from 'redux/contacts/operations';
@@ -15,7 +15,7 @@ import { deleteContact } from 'redux/contacts/operations';
 export const ContactsList = () => {
   const dispatch = useDispatch();
   const contactsList = useSelector(selectFilteredContacts);
-  const deleteLoading = useSelector(selectDeleteLoading);
+  // const deleteLoading = useSelector(selectDeleteLoading);
 
   const handledDeleteContact = contactId => {
     dispatch(deleteContact(contactId));
@@ -30,7 +30,7 @@ export const ContactsList = () => {
           </ItemText>
           <DeleteButton onClick={() => handledDeleteContact(id)}>
             Delete
-            {deleteLoading && <HendleLoader />}
+            {/* {deleteLoading && <HendleLoader />} */}
           </DeleteButton>
         </ListItem>
       ))}
